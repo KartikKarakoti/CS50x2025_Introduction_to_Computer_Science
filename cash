@@ -1,0 +1,66 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int calculate_quarters(int cents);
+int calculate_dimes(int cents);
+int calculate_nickels(int cents);
+
+int main(void)
+{
+    int n;
+    do
+    {
+        n = get_int("change owed: ");
+    }
+    while (n < 0);
+
+    int s = 0;
+
+    int a = calculate_quarters(n);
+    s = s + a;
+    n = n - (25 * a);
+
+    int b = calculate_dimes(n);
+    s = s + b;
+    n = n - (10 * b);
+
+    int c = calculate_nickels(n);
+    s = s + c;
+    n = n - (5 * c);
+
+    int count = n + s;
+    printf("%i\n", count);
+}
+
+int calculate_quarters(int cents)
+{
+    int quarters = 0;
+    while (cents >= 25)
+    {
+        quarters++;
+        cents = cents - 25;
+    }
+    return quarters;
+}
+
+int calculate_dimes(int cents)
+{
+    int dimes = 0;
+    while (cents >= 10)
+    {
+        dimes++;
+        cents = cents - 10;
+    }
+    return dimes;
+}
+
+int calculate_nickels(int cents)
+{
+    int nickels = 0;
+    while (cents >= 5)
+    {
+        nickels++;
+        cents = cents - 5;
+    }
+    return nickels;
+}
